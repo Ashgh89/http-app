@@ -1,9 +1,10 @@
 import "./App.css";
+import Discussion from "./containers/Discussion/Discussion";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello React</h1>
+      <Discussion />
     </div>
   );
 }
