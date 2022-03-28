@@ -28,7 +28,7 @@ const Discussion = () => {
       <section>
         {comments ? (
           comments.map((c) => (
-            <Comment key={c.id} name={c.name} email={c.email} body={c.body} />
+            <Comment key={c.id} name={c.name} email={c.email} />
           ))
         ) : (
           <p>Loading...</p>
