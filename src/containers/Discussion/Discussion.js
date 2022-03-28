@@ -1,15 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
 import axios from "axios";
 import "./discussion.css";
 const Discussion = () => {
-  // If status was :
-  // in range of 200 -> everything ok
-  // 301, 302 -> redirect
-  // 401 -> unAuthorized / 402, 403 -> noe access / 404 -> not found
-  // in range of 500 -> is in backend and server, that'S not my problem
+  const [comments, setComments] = useState(null);
+
+  // Now let's get data from backend
+  // useEffect has a callback function and a dependency
   useEffect(() => {
     // SO when we use get (for promise), after that we use these 2 methods -> then or catch
     // then () is when our promise has not any problem
@@ -17,7 +16,8 @@ const Discussion = () => {
     axios
       .get("https://jsonplaceholder.typicode.com/comments")
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        setComments(response.data.slice(0, 4));
       })
       .catch((error) => {
         console.log(error);
@@ -26,9 +26,13 @@ const Discussion = () => {
   return (
     <main>
       <section>
-        <Comment />
-        <Comment />
-        <Comment />
+        {comments ? (
+          comments.map((c) => (
+            <Comment key={c.id} name={c.name} email={c.email} body={c.body} />
+          ))
+        ) : (
+          <p>Loading...</p>
+        )}
       </section>
       <section>
         <FullComment />
