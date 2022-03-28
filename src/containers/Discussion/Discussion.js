@@ -12,8 +12,13 @@ const Discussion = () => {
   // Now let's get data from backend
   // useEffect has a callback function and a dependency
   useEffect(() => {
-    const promis = axios.get("https://jsonplaceholder.typicode.com/comments");
-    console.log(promis);
+    // SO when we use get (for promise), after that we use these 2 methods -> then or catch
+    // then () is when our promise has not any problem
+    // catch () is when our catch has problem
+    axios
+      .get("https://jsonplaceholder.typicode.com/comments")
+      .then(() => {})
+      .catch(() => {});
   }, []);
   return (
     <main>
