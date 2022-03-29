@@ -9,19 +9,20 @@ const FullComment = ({ commentId }) => {
       .then((res) => setComment(res.data))
       .catch();
   }, [commentId]);
-  const styles = {
-    color: "#444",
-    backgroundColor: "#efefef",
-    padding: "10px",
-  };
-  if (!commentId) return <p style={styles}>Please Select a Comment</p>;
-  return (
-    <div className="fullComment">
-      <p>name: {comment.name}</p>
-      <p>email: {comment.email}</p>
-      <p>{comment.body}</p>
-    </div>
-  );
+
+  let commentDetail = <p>please select a comment!</p>;
+  if (commentId) commentDetail = <p>LOADING.....</p>;
+
+  if (comment) {
+    commentDetail = (
+      <div className="fullComment">
+        <p> {comment.name}</p>
+        <p>{comment.email}</p>
+        <p>{comment.body}</p>
+      </div>
+    );
+  }
+  return commentDetail;
 };
 
 export default FullComment;
