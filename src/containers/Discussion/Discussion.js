@@ -28,7 +28,13 @@ const Discussion = () => {
   // THERE IS A ANOTHER WAY TO GET DATA FROM SERVER AND BACKEND
   // Async - Await
   async function getComment() {
+    // Without Object destructuring ({data})
+    //  const myData = await axios.get(
+    //   "https://jsonplaceholder.typicode.com/comments"
+    // );
+    // setComments(myData.data.slice(0, 4));
     try {
+      // With Object destructuring ({data})
       const { data } = await axios.get(
         "https://jsonplaceholder.typicode.com/comments"
       );
