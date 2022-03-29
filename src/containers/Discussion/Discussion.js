@@ -6,9 +6,12 @@ import axios from "axios";
 import "./discussion.css";
 const Discussion = () => {
   const [comments, setComments] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
   // Now let's get data from backend
   // useEffect has a callback function and a dependency
+  // THERE IS A ANOTHER WAY TO GET DATA FROM SERVER AND BACKEND
+  // Async - Await
   useEffect(() => {
     const getComment = async () => {
       try {
@@ -25,22 +28,29 @@ const Discussion = () => {
     getComment();
   }, []);
 
-  // THERE IS A ANOTHER WAY TO GET DATA FROM SERVER AND BACKEND
-  // Async - Await
+  const selectCommentHandler = (id) => {
+    // console.log(id);
+    setSelectedId(id);
+  };
 
   return (
     <main>
       <section>
         {comments ? (
           comments.map((c) => (
-            <Comment key={c.id} name={c.name} email={c.email} />
+            <Comment
+              key={c.id}
+              name={c.name}
+              email={c.email}
+              onClick={() => selectCommentHandler(c.id)}
+            />
           ))
         ) : (
           <p>Loading...</p>
         )}
       </section>
       <section>
-        <FullComment />
+        <FullComment commentId={selectedId} />
       </section>
       <section>
         <NewComment />
