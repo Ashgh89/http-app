@@ -5,10 +5,12 @@ const FullComment = ({ commentId }) => {
   console.log(commentId);
   const [comment, setComment] = useState(null);
   useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
-      .then((res) => setComment(res.data))
-      .catch();
+    if (commentId) {
+      axios
+        .get(`https://jsonplaceholder.typicode.com/comments/${commentId}`)
+        .then((res) => setComment(res.data))
+        .catch();
+    }
   }, [commentId]);
 
   if (!commentId) return <p>Please select a comment!</p>;
