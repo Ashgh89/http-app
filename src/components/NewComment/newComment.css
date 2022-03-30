@@ -10,3 +10,11 @@
   border: 5px;
   border-radius: 5px;
 }
+
+.newComment button {
+  background-color: yellowgreen;
+  border-radius: 12px;
+  margin-top: 30px;
+  width: 130px;
+  margin-left: 30px;
+}
