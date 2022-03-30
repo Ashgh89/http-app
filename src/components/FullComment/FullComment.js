@@ -12,26 +12,19 @@ const FullComment = ({ commentId }) => {
   }, [commentId]);
 
   if (!commentId) return <p>Please select a comment!</p>;
-  // let commentDetail = <p>please select a comment!</p>;
-  // if (commentId) commentDetail = <p>LOADING.....</p>;
+  let commentDetail = <p>please select a comment!</p>;
+  if (commentId) commentDetail = <p>LOADING.....</p>;
 
-  // if (comment) {
-  //   commentDetail = (
-  //     <div className="fullComment">
-  //       <p> {comment.name}</p>
-  //       <p>{comment.email}</p>
-  //       <p>{comment.body}</p>
-  //     </div>
-  //   );
-  // }
-  // return commentDetail;
-  return (
-    <div className="fullComment">
-      <p>{comment.name}</p>
-      <p>{comment.email}</p>
-      <p>{comment.body}</p>
-    </div>
-  );
+  if (comment) {
+    commentDetail = (
+      <div className="fullComment">
+        <p> {comment.name}</p>
+        <p>{comment.email}</p>
+        <p>{comment.body}</p>
+      </div>
+    );
+  }
+  return commentDetail;
 };
 
 export default FullComment;
