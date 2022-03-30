@@ -8,14 +8,19 @@ const NewComment = () => {
     email: "",
     content: "",
   });
-  const nameHandler = (e) => {
-    setComment({ ...comment, name: e.target.value });
-  };
-  const emailHandler = (e) => {
-    setComment({ ...comment, email: e.target.value });
-  };
-  const bodyHandler = (e) => {
-    setComment({ ...comment, content: e.target.value });
+  // const nameHandler = (e) => {
+  //   setComment({ ...comment, name: e.target.value });
+  // };
+  // const emailHandler = (e) => {
+  //   setComment({ ...comment, email: e.target.value });
+  // };
+  // const bodyHandler = (e) => {
+  //   setComment({ ...comment, content: e.target.value });
+  // };
+
+  const changeHandler = (e) => {
+    // To be sure if it works look in Console, Components and Network
+    setComment({ ...comment, [e.target.name]: e.target.value });
   };
   const postCommentHandler = () => {
     // We want to send data to BACKEND
@@ -36,15 +41,15 @@ const NewComment = () => {
     <div className="newComment">
       <div>
         <label>name</label>
-        <input type="text" onChange={nameHandler} />
+        <input type="text" onChange={changeHandler} name="name" />
       </div>
       <div>
         <label>email</label>
-        <input type="email" onChange={emailHandler} />
+        <input type="email" onChange={changeHandler} name="email" />
       </div>
       <div>
         <label>body</label>
-        <input type="textarea" onChange={bodyHandler} />
+        <input type="textarea" onChange={changeHandler} name="content" />
       </div>
       <button onClick={postCommentHandler}>Add New Comment</button>
     </div>
