@@ -27,9 +27,9 @@ const FullComment = ({ commentId }) => {
   // return commentDetail;
   return (
     <div className="fullComment">
-      <p>name</p>
-      <p>email</p>
-      <p>body</p>
+      <p>{comment.name}</p>
+      <p>{comment.email}</p>
+      <p>{comment.body}</p>
     </div>
   );
 };
