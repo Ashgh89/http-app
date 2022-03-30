@@ -11,9 +11,9 @@ const FullComment = ({ commentId }) => {
   }, [commentId]);
 
   let commentDetail = <p>please select a comment!</p>;
-  if (commentId) commentDetail = <p>LOADING.....</p>;
+  // if (commentId) commentDetail = <p>LOADING.....</p>;
 
-  if (comment) {
+  if (commentId) {
     commentDetail = (
       <div className="fullComment">
         <p> {comment.name}</p>
