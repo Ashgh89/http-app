@@ -13,10 +13,12 @@ const FullComment = ({ commentId }) => {
   let commentDetail = <p>please select a comment!</p>;
   if (commentId) commentDetail = <p>LOADING.....</p>;
 
-  if (commentId) {
+  if (comment) {
     commentDetail = (
       <div className="fullComment">
-        <p> {commentId.name}</p>
+        <p> {comment.name}</p>
+        <p>{comment.email}</p>
+        <p>{comment.body}</p>
       </div>
     );
   }
