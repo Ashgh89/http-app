@@ -30,14 +30,22 @@ const Discussion = () => {
     // console.log(id);
     setSelectedId(id);
   };
-  // it gives us a local database, so we can manipulate it easily in our system (put, delete, post and so on...)
-  // So let's do it
-  // 1. npm install -g json-server
-  // 2. json-server --watch db.json --port 3001 (because our port 3000 is busy now 😋)
-  // 3. now we have db.json here automatically and we can put data in it.
-  // 4. now if we type http://localhost:3001/comments in browser, we have our data
-  // 5. now let's learn how to play with these data
-  // if it is not clear, watch video no 111
+
+  const postCommentHandler = (comment) => {
+    // We want to send data to BACKEND
+    // name, email, content, postId=10
+    // create =>
+    // NOTICE axios is not exactly like json, it says send an object and dont worry i'll do the rest (like stringify)
+    axios
+      // Now if we want to add to this data another thing (e.g postId)
+      .post("http://localhost:3001/comments/", {
+        ...comment,
+        postId: 10,
+      })
+      // NOTICE don't forget to give res.data for the last pic here
+      .then((res) => console.log(res.data))
+      .catch();
+  };
 
   return (
     <main>
@@ -59,10 +67,19 @@ const Discussion = () => {
         <FullComment commentId={selectedId} />
       </section>
       <section>
-        <NewComment />
+        <NewComment onAddPost={postCommentHandler} />
       </section>
     </main>
   );
 };
 
 export default Discussion;
+
+// it gives us a local database, so we can manipulate it easily in our system (put, delete, post and so on...)
+// So let's do it
+// 1. npm install -g json-server
+// 2. json-server --watch db.json --port 3001 (because our port 3000 is busy now 😋)
+// 3. now we have db.json here automatically and we can put data in it.
+// 4. now if we type http://localhost:3001/comments in browser, we have our data
+// 5. now let's learn how to play with these data
+// if it is not clear, watch video no 111
