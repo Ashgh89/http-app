@@ -16,9 +16,7 @@ const Discussion = () => {
     const getComment = async () => {
       try {
         // With Object destructuring ({data})
-        const { data } = await axios.get(
-          "https://jsonplaceholder.typicode.com/comments"
-        );
+        const { data } = await axios.get("http://localhost:3001/comments");
         setComments(data.slice(0, 4));
       } catch (error) {
         console.log(error);
@@ -32,6 +30,14 @@ const Discussion = () => {
     // console.log(id);
     setSelectedId(id);
   };
+  // it gives us a local database, so we can manipulate it easily in our system (put, delete, post and so on...)
+  // So let's do it
+  // 1. npm install -g json-server
+  // 2. json-server --watch db.json --port 3001 (because our port 3000 is busy now 😋)
+  // 3. now we have db.json here automatically and we can put data in it.
+  // 4. now if we type http://localhost:3001/comments in browser, we have our data
+  // 5. now let's learn how to play with these data
+  // if it is not clear, watch video no 111
 
   return (
     <main>
