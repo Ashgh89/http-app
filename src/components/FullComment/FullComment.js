@@ -32,7 +32,7 @@ const FullComment = ({ commentId }) => {
         <p> {comment.name}</p>
         <p>{comment.email}</p>
         <p>{comment.body}</p>
-        <button onClick={deleteHandler}>Delete</button>
+        <button onClick={deleteHandler(comment)}>Delete</button>
       </div>
     );
   }

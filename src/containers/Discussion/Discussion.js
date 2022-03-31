@@ -7,17 +7,12 @@ import "./discussion.css";
 const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
-
-  // Now let's get data from backend
-  // useEffect has a callback function and a dependency
-  // THERE IS A ANOTHER WAY TO GET DATA FROM SERVER AND BACKEND
-  // Async - Await
   useEffect(() => {
     const getComment = async () => {
       try {
         // With Object destructuring ({data})
         const { data } = await axios.get("http://localhost:3001/comments");
-        setComments(data.slice(0, 4));
+        setComments(data);
       } catch (error) {
         console.log(error);
       }
@@ -27,15 +22,10 @@ const Discussion = () => {
   }, []);
 
   const selectCommentHandler = (id) => {
-    // console.log(id);
     setSelectedId(id);
   };
 
   const postCommentHandler = (comment) => {
-    // We want to send data to BACKEND
-    // name, email, content, postId=10
-    // create =>
-    // NOTICE axios is not exactly like json, it says send an object and dont worry i'll do the rest (like stringify)
     axios
       // Now if we want to add to this data another thing (e.g postId)
       .post("http://localhost:3001/comments/", {
@@ -43,7 +33,8 @@ const Discussion = () => {
         postId: 10,
       })
       // NOTICE don't forget to give res.data for the last pic here
-      .then((res) => console.log(res.data))
+      .then((res) => axios.get("http://localhost:3001/comments/"))
+      .then((res) => setComments(res.data))
       .catch();
   };
 
