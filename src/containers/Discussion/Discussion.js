@@ -38,22 +38,26 @@ const Discussion = () => {
       .catch();
   };
 
+  const renderComments = () => {
+    // first loading..., after that useEffect(), after that comments, error (if there is an error)
+    let renderedComments = <p>Loading...</p>;
+    if (comments) {
+      renderedComments = comments.map((c) => (
+        <Comment
+          key={c.id}
+          name={c.name}
+          email={c.email}
+          onClick={() => selectCommentHandler(c.id)}
+        />
+      ));
+    }
+
+    return renderedComments;
+  };
+
   return (
     <main>
-      <section>
-        {comments ? (
-          comments.map((c) => (
-            <Comment
-              key={c.id}
-              name={c.name}
-              email={c.email}
-              onClick={() => selectCommentHandler(c.id)}
-            />
-          ))
-        ) : (
-          <p>Loading...</p>
-        )}
-      </section>
+      <section>{renderComments()}</section>
       <section>
         <FullComment commentId={selectedId} />
       </section>
