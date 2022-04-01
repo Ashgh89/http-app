@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./newComment.css";
 import axios from "axios";
 
-const NewComment = ({ onAddPost }) => {
+const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
     name: "",
     email: "",
@@ -13,6 +13,20 @@ const NewComment = ({ onAddPost }) => {
     // To be sure if it works look in Console, Components and Network
     setComment({ ...comment, [e.target.name]: e.target.value });
     console.log(e.target.value);
+  };
+
+  // We write this function here and not in discussion component anymore
+  const postCommentHandler = async () => {
+    try {
+      await axios
+        // Now if we want to add to this data another thing (e.g postId)
+        .post("http://localhost:3001/comments/", {
+          ...comment,
+          postId: 10,
+        });
+      const { data } = await axios.get("http://localhost:3001/comments/");
+      setComments(data);
+    } catch (error) {}
   };
 
   return (
@@ -29,7 +43,7 @@ const NewComment = ({ onAddPost }) => {
         <label>body</label>
         <input type="textarea" onChange={changeHandler} name="content" />
       </div>
-      <button onClick={() => onAddPost(comment)}>Add New Comment</button>
+      <button onClick={postCommentHandler}>Add New Comment</button>
     </div>
   );
 };
