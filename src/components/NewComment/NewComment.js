@@ -12,6 +12,7 @@ const NewComment = ({ onAddPost }) => {
   const changeHandler = (e) => {
     // To be sure if it works look in Console, Components and Network
     setComment({ ...comment, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
   return (

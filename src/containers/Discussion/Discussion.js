@@ -7,6 +7,7 @@ import "./discussion.css";
 const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [error, setError] = useState(false);
   useEffect(() => {
     const getComment = async () => {
       try {
@@ -14,7 +15,8 @@ const Discussion = () => {
         const { data } = await axios.get("http://localhost:3001/comments");
         setComments(data);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        setError(true);
       }
     };
 
@@ -40,9 +42,11 @@ const Discussion = () => {
 
   const renderComments = () => {
     // first loading..., after that useEffect(), after that comments, error (if there is an error)
-    let renderedComments = <p>Loading...</p>;
-    if (comments) {
-      renderedComments = comments.map((c) => (
+    console.log("HAHAHA");
+    let renderedValue = <p>Loading...</p>;
+    if (error) renderedValue = <p>Fetching data failed</p>;
+    if (comments && !error) {
+      renderedValue = comments.map((c) => (
         <Comment
           key={c.id}
           name={c.name}
@@ -52,7 +56,7 @@ const Discussion = () => {
       ));
     }
 
-    return renderedComments;
+    return renderedValue;
   };
 
   return (
