@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "./fullComment.css";
 import axios from "axios";
-const FullComment = ({ commentId, setComments }) => {
+const FullComment = ({ commentId, setComments, setSelectedId }) => {
   const [comment, setComment] = useState(null);
   useEffect(() => {
     if (commentId) {
       axios
-        .get(`http://localhost:3001/comments/${commentId}`)
+        .get(`/comments/${commentId}`)
         .then((res) => setComment(res.data))
         .catch();
     }
@@ -14,9 +14,11 @@ const FullComment = ({ commentId, setComments }) => {
 
   const deleteHandler = async () => {
     try {
-      await axios.delete(`http://localhost:3001/comments/${commentId}`);
-      const { data } = await axios.get("http://localhost:3001/comments/");
+      await axios.delete(`/comments/${commentId}`);
+      const { data } = await axios.get("/comments/");
       setComments(data);
+      setSelectedId(null);
+      setComment(null);
     } catch (error) {}
   };
 
