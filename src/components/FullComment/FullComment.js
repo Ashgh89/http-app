@@ -14,7 +14,9 @@ const FullComment = ({ commentId, setComments }) => {
 
   const deleteHandler = async () => {
     try {
-      axios.delete(`http://localhost:3001/comments/${commentId}`);
+      await axios.delete(`http://localhost:3001/comments/${commentId}`);
+      const { data } = await axios.get("http://localhost:3001/comments/");
+      setComments(data);
     } catch (error) {}
   };
 
@@ -28,7 +30,7 @@ const FullComment = ({ commentId, setComments }) => {
         <p> {comment.name}</p>
         <p>{comment.email}</p>
         <p>{comment.body}</p>
-        <button onClick={deleteHandler(comment)}>Delete</button>
+        <button onClick={deleteHandler}>Delete</button>
       </div>
     );
   }
