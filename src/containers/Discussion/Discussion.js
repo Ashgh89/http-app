@@ -3,7 +3,8 @@ import Comment from "../../components/Comment/Comment";
 import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
 import { toast } from "react-toastify";
-import axios from "axios";
+// import axios from "axios";
+import http from "../../services/httpService";
 import "./discussion.css";
 const Discussion = () => {
   const [comments, setComments] = useState(null);
@@ -13,7 +14,7 @@ const Discussion = () => {
     const getComment = async () => {
       try {
         // With Object destructuring ({data})
-        const { data } = await axios.get("http://localhost:3001/comments");
+        const { data } = await http.get("/comments");
         setComments(data);
       } catch (error) {
         // console.log(error);

@@ -20,11 +20,11 @@ const NewComment = ({ setComments }) => {
     try {
       await axios
         // Now if we want to add to this data another thing (e.g postId)
-        .post("http://localhost:3001/comments/", {
+        .post("/comments/", {
           ...comment,
           postId: 10,
         });
-      const { data } = await axios.get("http://localhost:3001/comments/");
+      const { data } = await axios.get("/comments/");
       setComments(data);
     } catch (error) {}
   };
