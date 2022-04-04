@@ -12,14 +12,10 @@ const FullComment = ({ commentId, setComments }) => {
     }
   }, [commentId]);
 
-  const deleteHandler = () => {
-    axios
-      .delete(`http://localhost:3001/comments/${commentId}`)
-      .then((res) => {
-        // e.g we have 10 user => id:1 => axios.delete()=> now we have 9 user => res.data=9, now with setState we show it to user the updated data
-        // so we need the states that are in Discussion.js component
-      })
-      .catch((err) => console.log(err));
+  const deleteHandler = async () => {
+    try {
+      axios.delete(`http://localhost:3001/comments/${commentId}`);
+    } catch (error) {}
   };
 
   if (!commentId) return <p>Please select a comment!</p>;
