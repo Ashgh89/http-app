@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./fullComment.css";
 import axios from "axios";
-const FullComment = ({ commentId }) => {
+const FullComment = ({ commentId, setComments }) => {
   const [comment, setComment] = useState(null);
   useEffect(() => {
     if (commentId) {
@@ -16,7 +16,7 @@ const FullComment = ({ commentId }) => {
     axios
       .delete(`http://localhost:3001/comments/${commentId}`)
       .then((res) => {
-        // e.g we have 10 user => id:1 => axios.delte()=> now we have 9 user => res.data=9, now with setState we show it to user the updated data
+        // e.g we have 10 user => id:1 => axios.delete()=> now we have 9 user => res.data=9, now with setState we show it to user the updated data
         // so we need the states that are in Discussion.js component
       })
       .catch((err) => console.log(err));

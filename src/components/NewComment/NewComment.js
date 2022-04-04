@@ -47,5 +47,4 @@ const NewComment = ({ setComments }) => {
     </div>
   );
 };
-
 export default NewComment;
