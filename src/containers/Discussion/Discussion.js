@@ -4,7 +4,8 @@ import FullComment from "../../components/FullComment/FullComment";
 import NewComment from "../../components/NewComment/NewComment";
 import { toast } from "react-toastify";
 // import axios from "axios";
-import http from "../../services/httpService";
+// import http from "../../services/httpService";
+import { getComments } from "../../services/getAllComments";
 import "./discussion.css";
 const Discussion = () => {
   const [comments, setComments] = useState(null);

@@ -5,3 +5,6 @@ function getComments() {
 }
 
 export default getComments;
+
+// You can give arrow function as well,
+// That'S really doesn't matter
