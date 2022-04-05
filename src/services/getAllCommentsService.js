@@ -1,7 +1,7 @@
 import http from "./httpService";
 
-export function getAllComments(data) {
-  return http.get("/comments", data);
+export function getAllComments() {
+  return http.get("/comments");
 }
 
 // You can give arrow function as well,
