@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./newComment.css";
 import axios from "axios";
 import { addNewComments } from "../../services/addNewCommentService";
+import { getAllComments } from "../../services/getAllCommentsService";
 
 const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
@@ -26,7 +27,9 @@ const NewComment = ({ setComments }) => {
       //     ...comment,
       //     postId: 10,
       //   });
-      const { data } = await axios.get("/comments/");
+      // const { data } = await axios.get("/comments/");
+      const { data } = await getAllComments();
+
       setComments(data);
     } catch (error) {}
   };
