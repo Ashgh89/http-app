@@ -5,8 +5,9 @@ import NewComment from "../../components/NewComment/NewComment";
 import { toast } from "react-toastify";
 // import axios from "axios";
 // import http from "../../services/httpService";
-import { getComments } from "../../services/getAllComments";
+import { getAllComments } from "../../services/getAllCommentsService";
 import "./discussion.css";
+
 const Discussion = () => {
   const [comments, setComments] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
@@ -15,7 +16,7 @@ const Discussion = () => {
     const getComment = async () => {
       try {
         // With Object destructuring ({data})
-        const { data } = await http.get("/comments");
+        const { data } = await getAllComments();
         setComments(data);
       } catch (error) {
         // console.log(error);
