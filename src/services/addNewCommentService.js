@@ -1,7 +1,5 @@
 import http from "./httpService";
 
-function addNewComments() {
+export function addNewComments() {
   return http.get("/comments");
 }
-
-export default addNewComments;

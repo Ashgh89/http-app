@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./newComment.css";
 import axios from "axios";
+import { addNewComments } from "../../services/addNewCommentService";
 
 const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
@@ -18,12 +19,13 @@ const NewComment = ({ setComments }) => {
   // We write this function here and not in discussion component anymore
   const postCommentHandler = async () => {
     try {
-      await axios
-        // Now if we want to add to this data another thing (e.g postId)
-        .post("/comments/", {
-          ...comment,
-          postId: 10,
-        });
+      await addNewComments({ ...comment, postId: 10 });
+      // await axios
+      //   // Now if we want to add to this data another thing (e.g postId)
+      //   .post("/comments/", {
+      //     ...comment,
+      //     postId: 10,
+      //   });
       const { data } = await axios.get("/comments/");
       setComments(data);
     } catch (error) {}
