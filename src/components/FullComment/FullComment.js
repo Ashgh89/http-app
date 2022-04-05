@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import "./fullComment.css";
 import axios from "axios";
+import { deleteComment } from "../../services/deleteCommentService";
+import { getAllComments } from "../../services/getAllCommentsService";
+import { getOneComment } from "../../services/getOneCommentService";
 const FullComment = ({ commentId, setComments, setSelectedId }) => {
   const [comment, setComment] = useState(null);
   useEffect(() => {
+    // We can use then catch or async await/ egal
     if (commentId) {
-      axios
-        .get(`/comments/${commentId}`)
+      // axios
+      //   .get(`/comments/${commentId}`)
+      getOneComment(commentId)
         .then((res) => setComment(res.data))
         .catch();
     }
@@ -14,8 +19,12 @@ const FullComment = ({ commentId, setComments, setSelectedId }) => {
 
   const deleteHandler = async () => {
     try {
-      await axios.delete(`/comments/${commentId}`);
-      const { data } = await axios.get("/comments/");
+      // await axios.delete(`/comments/${commentId}`);
+      await deleteComment(commentId);
+
+      // const { data } = await axios.get("/comments/");
+      const { data } = getAllComments();
+
       setComments(data);
       setSelectedId(null);
       setComment(null);
