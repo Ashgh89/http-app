@@ -10,11 +10,13 @@ const NewComment = ({ setComments }) => {
     email: "",
     content: "",
   });
+  const [comment1, setComment1] = useState("");
 
   const changeHandler = (e) => {
     // To be sure if it works look in Console, Components and Network
     setComment({ ...comment, [e.target.name]: e.target.value });
     console.log(e.target.value);
+    setComment1("123");
   };
 
   // We write this function here and not in discussion component anymore
@@ -37,7 +39,7 @@ const NewComment = ({ setComments }) => {
   return (
     <div className="newComment">
       <div>
-        <label>name</label>
+        <label>{comment1}name</label>
         <input type="text" onChange={changeHandler} name="name" />
       </div>
       <div>
