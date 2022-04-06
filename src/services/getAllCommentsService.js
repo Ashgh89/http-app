@@ -10,7 +10,8 @@ export function getAllComments() {
 //NOTICE You cannot say export default getAllComments.
 // Why? because you want to export just the function
 // So in discussion.js you import it with {}
-// If you want use export default getAllComments, you don't need {} by import anymore
+// If you want use export default getAllComments,
+//  you don't need {} by import anymore
 
 /*// Three different export styles
 export foo;

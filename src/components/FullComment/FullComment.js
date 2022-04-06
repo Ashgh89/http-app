@@ -23,7 +23,7 @@ const FullComment = ({ commentId, setComments, setSelectedId }) => {
       await deleteComment(commentId);
 
       // const { data } = await axios.get("/comments/");
-      const { data } = getAllComments();
+      const { data } = await getAllComments();
 
       setComments(data);
       setSelectedId(null);
