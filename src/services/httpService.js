@@ -1,6 +1,10 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:3001";
+// HTTP messages are how data is exchanged between a server and a client.
+// There are two types of messages:
+// requests sent by the client to trigger an action on the server,
+// and responses, the answer from the server.
 
 // request - response
 axios.interceptors.request.use(
