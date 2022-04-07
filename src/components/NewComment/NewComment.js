@@ -6,7 +6,7 @@ import { getAllComments } from "../../services/getAllCommentsService";
 
 const NewComment = ({ setComments }) => {
   const [comment, setComment] = useState({
-    name: "sasw",
+    name: "",
     email: "",
     content: "",
   });
