@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import "./fullComment.css";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { deleteComment } from "../../services/deleteCommentService";
 import { getAllComments } from "../../services/getAllCommentsService";
 import { getOneComment } from "../../services/getOneCommentService";
-const FullComment = ({ commentId, setComments, setSelectedId }) => {
+const FullComment = ({ /*commentId,*/ setComments, setSelectedId }) => {
+  const { id } = useParams();
+  // console.log(id); // It gives us id te item that we clicked, like 2 or 1 ....
+  const commentId = id;
   const [comment, setComment] = useState(null);
   useEffect(() => {
     // We can use then catch or async await/ egal
