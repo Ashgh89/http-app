@@ -9,3 +9,5 @@ const Header = () => {
   );
 };
 export default Header;
+
+// FIRST STEP: ADD Header.js, Footer.js and Navigation.js
