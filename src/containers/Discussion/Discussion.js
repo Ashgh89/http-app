@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Comment from "../../components/Comment/Comment";
-import FullComment from "../../components/FullComment/FullComment";
-import NewComment from "../../components/NewComment/NewComment";
+// import FullComment from "../../components/FullComment/FullComment";
+// import NewComment from "../../components/NewComment/NewComment";
 import { toast } from "react-toastify";
 // import axios from "axios";
 // import http from "../../services/httpService";
@@ -10,7 +10,7 @@ import "./discussion.css";
 import { Link } from "react-router-dom";
 const Discussion = () => {
   const [comments, setComments] = useState(null);
-  const [selectedId, setSelectedId] = useState(null);
+  // const [selectedId, setSelectedId] = useState(null);
   const [error, setError] = useState(false);
   useEffect(() => {
     const getComment = async () => {
@@ -27,21 +27,8 @@ const Discussion = () => {
     getComment();
   }, []);
 
-  const selectCommentHandler = (id) => {
-    setSelectedId(id);
-  };
-
-  // const postCommentHandler = (comment) => {
-  //   axios
-  //     // Now if we want to add to this data another thing (e.g postId)
-  //     .post("http://localhost:3001/comments/", {
-  //       ...comment,
-  //       postId: 10,
-  //     })
-  //
-  //     .then((res) => axios.get("http://localhost:3001/comments/"))
-  //     .then((res) => setComments(res.data))
-  //     .catch();
+  // const selectCommentHandler = (id) => {
+  //   setSelectedId(id);
   // };
 
   const renderComments = () => {
@@ -59,30 +46,17 @@ const Discussion = () => {
           <Comment
             name={c.name}
             email={c.email}
-            onClick={() => selectCommentHandler(c.id)}
+            // onClick={() => selectCommentHandler(c.id)}
           />
         </Link>
       ));
     }
+    //YOU CAN RENAME Discussion.js to CommentList, because it is cleaner and better
 
     return renderedValue;
   };
 
-  return (
-    <main>
-      <section>{renderComments()}</section>
-      {/* <section>
-        <FullComment
-          commentId={selectedId}
-          setComments={setComments}
-          setSelectedId={setSelectedId}
-        />
-      </section>
-      <section>
-        <NewComment setComments={setComments} />
-      </section> */}
-    </main>
-  );
+  return <section>{renderComments()}</section>;
 };
 
 export default Discussion;

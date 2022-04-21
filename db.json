@@ -1,18 +1,25 @@
 {
   "comments": [
     {
-      "name": "fdbdfgb",
+      "name": "aaa",
       "email": "",
       "content": "",
       "postId": 10,
-      "id": 1
+      "id": 4
     },
     {
-      "name": "Ashi",
-      "email": "",
+      "name": "Iman Ghanei",
+      "email": "ghaneiash@gmail.com",
       "content": "",
       "postId": 10,
-      "id": 3
+      "id": 6
+    },
+    {
+      "name": "Lena Stern",
+      "email": "ashghanei@yahoo.com",
+      "content": "",
+      "postId": 10,
+      "id": 7
     }
   ]
 }

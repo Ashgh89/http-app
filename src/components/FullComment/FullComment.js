@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import "./fullComment.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { deleteComment } from "../../services/deleteCommentService";
-import { getAllComments } from "../../services/getAllCommentsService";
+// import { getAllComments } from "../../services/getAllCommentsService";
 import { getOneComment } from "../../services/getOneCommentService";
-const FullComment = ({ /*commentId,*/ setComments, setSelectedId }) => {
+const FullComment = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   // console.log(id); // It gives us id te item that we clicked, like 2 or 1 ....
   const commentId = id;
   const [comment, setComment] = useState(null);
@@ -25,12 +27,13 @@ const FullComment = ({ /*commentId,*/ setComments, setSelectedId }) => {
     try {
       // await axios.delete(`/comments/${commentId}`);
       await deleteComment(commentId);
+      navigate("/");
 
       // const { data } = await axios.get("/comments/");
-      const { data } = await getAllComments();
 
-      setComments(data);
-      setSelectedId(null);
+      // const { data } = await getAllComments();
+      // setComments(data);
+      // setSelectedId(null);
       setComment(null);
     } catch (error) {}
   };
